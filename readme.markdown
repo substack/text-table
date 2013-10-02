@@ -104,6 +104,7 @@ options can be:
 
 * `opts.hsep` - separator to use between columns, default `'  '`
 * `opts.align` - array of alignment types for each column, default `['l','l',...]`
+* `opts.stringLength` - callback function to use when calculating the string length
 
 alignment types are:
 
@@ -119,6 +120,12 @@ With [npm](https://npmjs.org) do:
 ```
 npm install text-table
 ```
+
+# Use with ANSI-colors
+
+Since the string length of ANSI color schemes does not equal the length JavaScript sees internally it is necessary to pass the a custom string length calculator during the main function call.
+
+See the `test/ansi-colors.js` file for an example.
 
 # license
 

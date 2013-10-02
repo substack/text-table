@@ -2,6 +2,7 @@ module.exports = function (rows_, opts) {
     if (!opts) opts = {};
     var hsep = opts.hsep === undefined ? '  ' : opts.hsep;
     var align = opts.align || [];
+    var stringLength = opts.stringLength || function (s) { return String(s).length; }; 
     
     var dotsizes = reduce(rows_, function (acc, row) {
         forEach(row, function (c, ix) {
@@ -17,7 +18,7 @@ module.exports = function (rows_, opts) {
             if (align[ix] === '.') {
                 var index = dotindex(c);
                 var size = dotsizes[ix] + (/\./.test(c) ? 1 : 2)
-                    - (c.length - index)
+                    - (stringLength(c) - index)
                 ;
                 return c + Array(size).join(' ');
             }
@@ -27,7 +28,7 @@ module.exports = function (rows_, opts) {
     
     var sizes = reduce(rows, function (acc, row) {
         forEach(row, function (c, ix) {
-            var n = String(c).length;
+            var n = stringLength(c);
             if (!acc[ix] || n > acc[ix]) acc[ix] = n;
         });
         return acc;
@@ -35,7 +36,7 @@ module.exports = function (rows_, opts) {
     
     return map(rows, function (row) {
         return map(row, function (c, ix) {
-            var n = (sizes[ix] - String(c).length) || 0;
+            var n = (sizes[ix] - stringLength(c)) || 0;
             var s = Array(Math.max(n + 1, 1)).join(' ');
             if (align[ix] === 'r' || align[ix] === '.') {
                 return s + c;

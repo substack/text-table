@@ -1,6 +1,7 @@
 module.exports = function (rows_, opts) {
     if (!opts) opts = {};
     var hsep = opts.hsep === undefined ? '  ' : opts.hsep;
+    var lsep = opts.lsep === undefined ? '\n' : opts.lsep;
     var align = opts.align || [];
     var stringLength = opts.stringLength
         || function (s) { return String(s).length; }
@@ -51,7 +52,7 @@ module.exports = function (rows_, opts) {
             
             return c + s;
         }).join(hsep).replace(/\s+$/, '');
-    }).join('\n');
+    }).join(lsep);
 };
 
 function dotindex (c) {

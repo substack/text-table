@@ -55,6 +55,9 @@ module.exports = function (rows_, opts) {
 };
 
 function dotindex (c) {
+    if (c === undefined) {
+        return '';
+    }
     var m = /\.[^.]*$/.exec(c);
     return m ? m.index + 1 : c.length;
 }

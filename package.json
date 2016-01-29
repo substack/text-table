@@ -1,6 +1,6 @@
 {
     "name": "text-table",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "borderless text tables with alignment",
     "main": "index.js",
     "devDependencies": {

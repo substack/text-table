@@ -7,7 +7,8 @@ module.exports = function (rows_, opts) {
     ;
     
     var dotsizes = reduce(rows_, function (acc, row) {
-        forEach(row, function (c, ix) {
+        forEach(row, function (c_, ix) {
+            var c = String(c_);
             var n = dotindex(c);
             if (!acc[ix] || n > acc[ix]) acc[ix] = n;
         });
